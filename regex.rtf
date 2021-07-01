@@ -1,0 +1,82 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPS-BoldMT;\f1\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red0\green0\blue128;\red255\green128\blue0;
+\red128\green128\blue128;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c0\c0\c50196;\csgenericrgb\c100000\c50196\c0;
+\csgenericrgb\c50196\c50196\c50196;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab708
+\pard\pardeftab708\ri-386\partightenfactor0
+
+\f0\b\fs20 \cf2 import
+\f1\b0 \cf0  re\
+regex_release 
+\f0\b \cf3 =
+\f1\b0 \cf0  re
+\f0\b \cf3 .
+\f1\b0 \cf0 compile
+\f0\b \cf3 (
+\f1\b0 \cf4 r'''^\\s\{4,\} # commence par au moins 4 espaces \
+                            (?P<Release>[0-9.]+(\\s?\\w*)\{2\}) # le num\'e9ro \
+							# de la release\
+                            \\s\{3,\} # au moins 3 espaces cons\'e9cutifs\
+                            (?P<Derived_from>[0-9.]+)\\s+ # la version \
+							# de laquelle d\'e9rive l'actuelle\
+                            (?P<Year>\\d\{4\}[-]?\\S*)  # ann\'e9e de la release\
+                            '''
+\f0\b \cf3 ,
+\f1\b0 \cf0  re
+\f0\b \cf3 .
+\f1\b0 \cf0 X
+\f0\b \cf3 )
+\f1\b0 \cf0 \
+
+\f0\b \cf2 \
+with
+\f1\b0 \cf0  open
+\f0\b \cf3 (
+\f1\b0 \cf5 'C:\\\\Users\\\\Tools\\\\Anaconda3\\\\LICENSE_PYTHON.txt'
+\f0\b \cf3 ,
+\f1\b0 \cf0  \cf5 'r'
+\f0\b \cf3 )
+\f1\b0 \cf0  
+\f0\b \cf2 as
+\f1\b0 \cf0  file
+\f0\b \cf3 :
+\f1\b0 \cf0 \
+    
+\f0\b \cf2 print\cf3 (
+\f1\b0 \cf0 F\cf5 'Releases de python \'e0 partir de la version 1.6 :\\n'
+\f0\b \cf3 )\
+\pard\pardeftab708\ri-386\partightenfactor0
+
+\f1\b0 \cf0 \
+    
+\f0\b \cf2 for
+\f1\b0 \cf0  line 
+\f0\b \cf2 in
+\f1\b0 \cf0  file
+\f0\b \cf3 :
+\f1\b0 \cf0 \
+        release_info 
+\f0\b \cf3 =
+\f1\b0 \cf0  regex_release
+\f0\b \cf3 .
+\f1\b0 \cf0 search
+\f0\b \cf3 (
+\f1\b0 \cf0 line
+\f0\b \cf3 )
+\f1\b0 \cf0 \
+        
+\f0\b \cf2 if
+\f1\b0 \cf0  release_info
+\f0\b \cf3 :
+\f1\b0 \cf0 \
+\pard\pardeftab708\ri-386\sl259\slmult1\sa160\qj\partightenfactor0
+\cf0             
+\f0\b \cf2 print\cf3 (
+\f1\b0 \cf0 release_info
+\f0\b \cf3 .
+\f1\b0 \cf0 groupdict
+\f0\b \cf3 ())\
+}
